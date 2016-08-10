@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>DemoForPIN</title>
+	<script src="union-security-1.1.0.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var prevPin = "";
+		function doTest() {
+			var doc = document.form1;
+			var test = new UnionPin();
+			var pin = doc.PIN.value;
+			var RSAKey = doc.RSAKey.value;
+			var SM2Key = doc.SM2Key.value;
+			//doc.RSACipher.value = test.encryptPinByRSA(pin, RSAKey, 0);
+			doc.SM2Cipher.value = test.encryptPinBySM2(pin, SM2Key, 0);
+		}
+	</script>
+</head>
+<body>
+	<form name="form1">
+		<input type="button" name="Test" value="Test" id="Test" onclick="doTest();">
+		<input type="reset" value="Reset"><br><br>
+		PIN:
+		<input type="text" name="PIN" id="PIN" value="" size="100"><br>
+		RSA密文：<br>
+		<textarea name="RSACipher" id="RSACipher" rows="5" cols="100">
+		</textarea><br><br>
+		SM2密文：<br>
+		<textarea name="SM2Cipher" id="SM2Cipher" rows="5" cols="100">
+		</textarea><br><br>
+
+		RSA公钥：<br>
+		<textarea name="RSAKey" id="RSAKey" rows="5" cols="100"></textarea><br><br>
+
+		SM2公钥：<br>
+		<textarea name="SM2Key" id="SM2Key" rows="5" cols="100">D02BC7418D7A77DB67401A48966FB2B02BBF09D7063C1E0923170D6228BC89E33F9D471282A180AA12D5AABCD8B3328BAE7625B18461BD629CC6B8BC58F88C1D</textarea><br><br>
+		
+		
+	</form>
+</body>
+</html>
